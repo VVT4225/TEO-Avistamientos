@@ -63,7 +63,11 @@ def numero_avistamientos_fecha(avistamientos: list[Avistamiento], fecha: datetim
     @rtype: int
     
     '''
-    pass
+    res = []
+    for i in avistamientos:
+        if i.fechahora.date == fecha:
+            res.append(i)
+    return len(res)
 
 
 # Por comprensión
