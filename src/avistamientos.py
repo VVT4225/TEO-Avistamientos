@@ -65,14 +65,14 @@ def numero_avistamientos_fecha(avistamientos: list[Avistamiento], fecha: datetim
     '''
     res = []
     for i in avistamientos:
-        if i.fechahora.date == fecha:
+        if i.fechahora.date() == fecha:
             res.append(i)
     return len(res)
 
 
 # Por comprensión
 def numero_avistamientos_fecha2(avistamientos: list[Avistamiento], fecha: datetime.date) -> int:
-    pass
+    return len([i for i in avistamientos if i.fechahora.date() == fecha])
 
 ### 2.2 Número de formas observadas en un conjunto de estados
 def formas_estados(avistamientos: list[Avistamiento], estados: set[str]) -> int:
@@ -87,7 +87,12 @@ def formas_estados(avistamientos: list[Avistamiento], estados: set[str]) -> int:
          en alguno de los estados indicados por el parámetro "estados"
     @rtype: int
     '''
-    pass
+    res = set()
+
+    for i in avistamientos:
+        if i.forma not in res:
+            res.add(i.forma)
+    return len(res)
 
 def formas_estados2(avistamientos: list[Avistamiento], estados: set[str]) -> int:
     # Por comprensión
