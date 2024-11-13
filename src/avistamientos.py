@@ -37,7 +37,16 @@ def lee_avistamientos(fichero :str) -> list[Avistamiento]:
     @return: lista de tuplas con la información de los avistamientos 
     @rtype: [Avistamiento(datetime, str, str, str, str, int, str, Coordenadas(float, float))]   
     '''
-    pass
+    registros = []
+    with open(fichero,encoding="utf-8") as f:
+        lector = csv.reader(f)
+        next(lector)
+        for fecha,city,state,shape,duration,comments,latitude,longitude in lector:
+            fechahora = parse_datetime(fecha,formato="%m/%d/%Y %H:%M")
+            duracion = int(duration)
+            ubicacion = Coordenadas(float(latitude),float(longitude))
+            registros.append(Avistamiento(fechahora,city,state,shape,duracion,comments,ubicacion))
+    return registros
 
 ### 2.1 Número de avistamientos producidos en una fecha
 def numero_avistamientos_fecha(avistamientos: list[Avistamiento], fecha: datetime.date) -> int:
