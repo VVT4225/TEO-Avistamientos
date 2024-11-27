@@ -16,7 +16,7 @@ def a_radianes(coordenadas):
     Usa la función radians para convertir a radianes. Por ejemplo,
     latitud_radianes = radians(latitud)
     '''
-    pass
+    return Coordenadas(radians(coordenadas.latitud), radians(coordenadas.longitud)) 
 
 
 def distancia_harvesine(coordenadas1, coordenadas2):
@@ -29,7 +29,14 @@ def distancia_harvesine(coordenadas1, coordenadas2):
     @return: La distancia harvesine entre las dos coordenadas dadas como parámetro
     @rtype: float
     '''
-    pass
+    coord1_rad = a_radianes(coordenadas1)
+    coord2_rad = a_radianes(coordenadas2)
+    dif_lat = coord2_rad.latitud - coord1_rad.latitud
+    dif_lon = coord2_rad.longitud - coord1_rad.longitud
+    a = sin(dif_lat/2)*2 + cos(coord1_rad.latitud) * cos(coord2_rad.latitud) * sin(dif_lon/2)*2
+    r = 6371
+    d = 2 * r * asin(sqrt(a))
+    return d
 
 def redondear(coordenadas):
     '''Devuelve unas coordenadas cuya latitud y longitud son 

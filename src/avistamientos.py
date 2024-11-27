@@ -152,7 +152,11 @@ def avistamiento_mayor_duracion(avistamientos: list[Avistamiento], forma: str) -
     @return:  avistamiento más largo de la forma dada
     @rtype: Avistamiento(datetime, str, str, str, int, str, Coordenadas(float, float))
     '''
-    pass
+    res = []
+    for av in avistamientos:
+        if av.forma == forma:
+            res.append(av)
+    return max(res, key = lambda av: av.duracion)
     
 
 def avistamiento_mayor_duracion2(avistamientos: list[Avistamiento], forma: str) -> Avistamiento:
@@ -213,9 +217,14 @@ def avistamientos_fechas(avistamientos: list[Avistamiento], fecha_inicial: date|
     # Solución 1: usando datetime.min/max
     pass
 
+
 def avistamientos_fechas2(avistamientos: list[Avistamiento], fecha_inicial: date|None =None, fecha_final: date|None =None) -> list[Avistamiento]:
     # Solución 2: usando una función auxiliar : fecha_en_rango
-    pass
+    res = []
+    for i in avistamientos:
+        if (fecha_inicial is None or fecha_inicial <= i.fechahora) and (fecha_final is None or i.fechahora <= fecha_final):
+            res.append(i)
+    return sorted(res, key = lambda x:x.fechahora, reverse=True)
 
 def fecha_en_rango(fecha, fecha_inicial=None, fecha_final=None) -> bool:
     '''Función que devuelve True si la fecha está en el rango (fecha_inicial, fecha_final). 
@@ -271,7 +280,18 @@ def media_dias_entre_avistamientos(avistamientos: list[Avistamiento], anyo: int 
     cálculo, devuelve None 
     @rtype:-float
     '''    
-    pass
+    res = []
+    for av in avistamientos:
+        if anyo is None or av.fechahora.year == anyo:
+            res.append(av.fechahora.date())
+    res.sort()
+    resultado = []
+    for indice in range(len(res)-1):
+        fecha1 = res[indice]
+        fecha2 = res[indice + 1]
+        day = (fecha2 - fecha1).days
+        resultado.append(day)
+    return sum(resultado)/len(resultado)
 
 def dias_entre_fechas(fechas: list[datetime.date]) -> list[int]:
     '''Función auxiliar. Con zip
