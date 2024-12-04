@@ -231,17 +231,17 @@ def main():
     # print("4.6" , "#"*70)
     # test_hora_mas_avistamientos(avistamientos)
 
-    ### 4.7 ##########################################################
-    print("4.7" , "#"*70)
-    test_longitud_media_comentarios_por_estado(avistamientos)
+    # ### 4.7 ##########################################################
+    # print("4.7" , "#"*70)
+    # test_longitud_media_comentarios_por_estado(avistamientos)
 
     # ### 4.8 ##########################################################
     # print("4.8" , "#"*70)
     # test_porc_avistamientos_por_forma(avistamientos)
 
-    # ### 4.9 ##########################################################
-    # print("4.9" , "#"*70)
-    # test_avistamientos_mayor_duracion_por_estado(avistamientos)
+    ### 4.9 ##########################################################
+    print("4.9" , "#"*70)
+    test_avistamientos_mayor_duracion_por_estado(avistamientos)
 
     # ### 4.10 ##########################################################
     # print("4.10" , "#"*70)

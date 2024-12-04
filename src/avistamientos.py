@@ -508,8 +508,8 @@ def longitud_media_comentarios_por_estado(avistamientos: list[Avistamiento]) -> 
     for i in avistamientos:
         res1[i.estado].append(len(i.comentarios))
 
-    d2 = {estado:sum(lista)/len(lista) for estado,lista in res1.items()}
-    return d2
+    res2 = {estado:sum(lista)/len(lista) for estado,lista in res1.items()}
+    return dict(sorted(res2.items(),reverse=True))
 
 
 def agrupa_avistamientos_por_estado(avistamientos: list[Avistamiento]) -> dict[str, list[Avistamiento]]:
@@ -582,7 +582,12 @@ def avistamientos_mayor_duracion_por_estado(avistamientos: list[Avistamiento], n
     y cuyos valores sean las mismas listas, pero en orden de mayor a menor
     duración y recortadas a "limite" elementos.
     '''
-    pass
+    res1 = defaultdict(list)
+    for i in avistamientos:
+        res1[i.estado].append(i)
+    
+    return {estado:sorted(lista,reverse=True,key=lambda i:i.duracion)[:n] for estado,lista in res1.items()}
+
 
 def avistamientos_mayor_duracion_por_estado2(avistamientos: list[Avistamiento], n: int=3) -> dict[str, list[Avistamiento]]:
     # Usando una definición por compresión
