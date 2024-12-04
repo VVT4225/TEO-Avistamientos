@@ -444,12 +444,12 @@ def coordenadas_mas_avistamientos(avistamientos: list[Avistamiento]) -> Coordena
     Después obtendremos el máximo de los elementos del diccionario según el valor
     del elemento.
     '''   
-    dicc = defaultdict(int)
+    res = defaultdict(int)
     for i in avistamientos:
-        dicc[redondear(i.ubicacion)] += 1
-    lista = list(dicc.items())
-    lista.sort(key = lambda x:x[1], reverse=True)
-    return lista[0]
+        res[redondear(i.ubicacion)] += 1
+    lista = list(res.items())
+    lista.sort(key = lambda x:x[1],reverse = True)
+    return lista[0][0]
 
 def coordenadas_mas_avistamientos2(avistamientos: list[Avistamiento]) -> Coordenadas: 
     res = Counter(redondear(i.ubicacion) for i in avistamientos)
@@ -503,7 +503,13 @@ def longitud_media_comentarios_por_estado(avistamientos: list[Avistamiento]) -> 
     calcule la media. Para definir este diccionario usamos una función
     auxiliar que calcule la media de una lista de Avistamientos
     '''
-    pass
+    res1 = []
+    res2 = 0
+    for i in avistamientos:
+        res1.append(i.comentarios)
+        for v in i.comentarios.split():
+            res2 += 1
+    return (res2/len(res1))
 
 
 def agrupa_avistamientos_por_estado(avistamientos: list[Avistamiento]) -> dict[str, list[Avistamiento]]:
