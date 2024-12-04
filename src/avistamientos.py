@@ -503,13 +503,13 @@ def longitud_media_comentarios_por_estado(avistamientos: list[Avistamiento]) -> 
     calcule la media. Para definir este diccionario usamos una función
     auxiliar que calcule la media de una lista de Avistamientos
     '''
-    res1 = []
-    res2 = 0
+    
+    res1 = defaultdict(list)
     for i in avistamientos:
-        res1.append(i.comentarios)
-        for v in i.comentarios.split():
-            res2 += 1
-    return (res2/len(res1))
+        res1[i.estado].append(len(i.comentarios))
+
+    d2 = {estado:sum(lista)/len(lista) for estado,lista in res1.items()}
+    return d2
 
 
 def agrupa_avistamientos_por_estado(avistamientos: list[Avistamiento]) -> dict[str, list[Avistamiento]]:

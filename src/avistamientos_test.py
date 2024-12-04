@@ -231,9 +231,9 @@ def main():
     # print("4.6" , "#"*70)
     # test_hora_mas_avistamientos(avistamientos)
 
-    # ### 4.7 ##########################################################
-    # print("4.7" , "#"*70)
-    # test_longitud_media_comentarios_por_estado(avistamientos)
+    ### 4.7 ##########################################################
+    print("4.7" , "#"*70)
+    test_longitud_media_comentarios_por_estado(avistamientos)
 
     # ### 4.8 ##########################################################
     # print("4.8" , "#"*70)
