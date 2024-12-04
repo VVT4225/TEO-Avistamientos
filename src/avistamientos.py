@@ -376,11 +376,14 @@ def numero_avistamientos_por_año(avistamientos: list[Avistamiento]) -> dict[int
     @rtype: {int: int}
     '''
     # Con dict
-    pass
+    dicc = defaultdict(int)
+    for i in avistamientos:
+        dicc[i.fechahora.year] += 1
+    return dicc
 
 def numero_avistamientos_por_año2(avistamientos: list[Avistamiento]) -> dict[int, int]:
-    # Con Counter
-    pass
+    años = [i.fechahora.year for i in avistamientos]
+    return Counter(años)
 
 def numero_avistamientos_por_año3(avistamientos: list[Avistamiento]) -> dict[int, int]:
     # Con defaultdict
@@ -441,11 +444,17 @@ def coordenadas_mas_avistamientos(avistamientos: list[Avistamiento]) -> Coordena
     Después obtendremos el máximo de los elementos del diccionario según el valor
     del elemento.
     '''   
-    pass
+    dicc = defaultdict(int)
+    for i in avistamientos:
+        dicc[redondear(i.ubicacion)] += 1
+    lista = list(dicc.items())
+    lista.sort(key = lambda x:x[1], reverse=True)
+    return lista[0]
 
 def coordenadas_mas_avistamientos2(avistamientos: list[Avistamiento]) -> Coordenadas: 
-    #Alternativa con Counter
-    pass
+    res = Counter(redondear(i.ubicacion) for i in avistamientos)
+
+    return sorted(res.items(), key=lambda x:x[1], reverse = True)[0]
 
 def coordenadas_mas_avistamientos3(avistamientos: list[Avistamiento]) -> Coordenadas: 
     #Con defaultdict e items para el cálculo del max

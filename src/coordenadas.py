@@ -51,4 +51,4 @@ def redondear(coordenadas):
     Usa la función round para redondear. Por ejemplo,
     latitud_redondeada = round(latitud)
     '''
-    pass
+    return Coordenadas(round(coordenadas.latitud),round(coordenadas.longitud))

@@ -157,7 +157,7 @@ def main():
     locale.setlocale(locale.LC_TIME, '')
 
     avistamientos = av.lee_avistamientos("data/ovnis.csv")
-    test_lee_avistamientos (avistamientos)
+    # test_lee_avistamientos (avistamientos)
 
     # ### 2.1 ##########################################################
     # print("2.1" , "#"*70)
@@ -223,9 +223,9 @@ def main():
     # print("4.4" , "#"*70)
     # test_num_avistamientos_por_mes(avistamientos)
 
-    # ### 4.5 ##########################################################
-    # print("4.5" , "#"*70)
-    # test_coordenadas_mas_avistamientos(avistamientos)
+    ### 4.5 ##########################################################
+    print("4.5" , "#"*70)
+    test_coordenadas_mas_avistamientos(avistamientos)
 
     # ### 4.6 ##########################################################
     # print("4.6" , "#"*70)
